@@ -3,6 +3,11 @@
 Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 com versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.1.1] — 2026-08-21
+
+### Corrigido
+- Os comandos `/kotlin-load`, `/kotlin-review` e `/kotlin-cc` carregavam **texto do template de Swift** (`@MainActor`, `Sendable`, ARC, "Kotlin 6 mode") — resíduo de cópia adaptada por substituição. Reescritos para o que é de Kotlin/Android: `GlobalScope`, `Dispatchers` no repositório, `CancellationException` que não se engole, `when` sobre `sealed` sem `else`, `repeatOnLifecycle`, `exported` no manifesto e **R8 com `keep` testado**. *A Classe C reaparecendo na skill nova, no primeiro dia — registrada aqui de propósito.*
+
 ## [0.1.0] — 2026-08-21
 
 Primeira versão. A `schematize-mobile` promete escolha *"nativo vs cross por fit + ADR"* e **não havia skill por trás de nenhuma das opções** — promessa **publicada e não sustentada** (vistoria de 2026-08-21). Publicada no mesmo marco que `schematize-swift`, `schematize-dart` e o conserto da `schematize-mobile` (v0.3.0).
