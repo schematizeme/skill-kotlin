@@ -1,0 +1,19 @@
+# Changelog — schematize-kotlin
+
+Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
+com versionamento [SemVer](https://semver.org/lang/pt-BR/).
+
+## [0.1.0] — 2026-08-21
+
+Primeira versão. A `schematize-mobile` promete escolha *"nativo vs cross por fit + ADR"* e **não havia skill por trás de nenhuma das opções** — promessa **publicada e não sustentada** (vistoria de 2026-08-21). Publicada no mesmo marco que `schematize-swift`, `schematize-dart` e o conserto da `schematize-mobile` (v0.3.0).
+
+### Adicionado
+- **`references/piso.md`** — nulabilidade (**`!!` é um NPE que você escolheu**; a **fronteira com Java mente**, porque platform type não é checado; `lateinit` é promessa sem garantia e o erro dele não diz mais que um NPE); **corrotinas estruturadas** (**`GlobalScope` não é cancelado por nada e sobrevive à tela** — o vazamento clássico do Android; `withContext` no **repositório**, porque quem chama não deveria saber onde a função roda; **cancelamento cooperativo** e o ponto que mais engana: **`CancellationException` não é erro** — engoli-lo transforma "a tela fechou" em erro de negócio, e `runCatching` engole por default; e a propagação de exceção que **não sobe pelo `try` de quem lançou**); `sealed` + **`when` sem `else`** (com `else`, o dia em que alguém acrescenta um caso o compilador **cala**); Android (Context estático, ciclo de vida, `SharedPreferences` é **XML em claro**); segurança do cliente; teste.
+- **`references/plataforma.md`** — Gradle com **version catalog**, dependency locking e **wrapper com `distributionSha256Sum`** (*wrapper sem checksum é execução de binário baixado sem verificação — a cadeia de suprimentos começa aí*); `targetSdk` que **bloqueia publicação** quando envelhece; **R8 com regras de `keep` testadas** (o crash clássico de release é reflexão que o R8 removeu, e ele **não aparece em debug**); `android:exported` explícito; **KMP como decisão de arquitetura com ADR**; interop Java (`List` do Kotlin é read-only, **não imutável**).
+- **`scripts/check-kotlin.sh`** + **`check-kotlin.test.sh`** (**11 casos**, 9 vermelhos): `!!`, `GlobalScope`, `runBlocking`, `catch {}` vazio, `catch(Exception)` sem tratar cancelamento, `runCatching` idem, `lateinit`, credencial em `SharedPreferences`, `addJavascriptInterface`, `when` sobre sealed com `else`, e no manifesto: **componente com intent-filter sem `exported` explícito**, `usesCleartextTraffic`, `allowBackup`.
+
+### Corrigido durante a própria escrita (vale registro)
+- A regra do `!!` **nunca casava**: o padrão `[A-Za-z_)\]]!!` usa `\]` **dentro de uma classe POSIX**, onde a barra invertida é **literal** — ou seja, ele exigia um `]` logo depois da classe. Gate cego não reprova nada **e parece verde**. Corrigido para `[]A-Za-z_)]` (o `]` primeiro, que é a forma correta) — e o mesmo defeito foi corrigido no gate da `schematize-swift`.
+
+### Honestidade sobre o alcance
+- A toolchain Android/Gradle **não roda na máquina de referência** do catálogo. O gate é **textual** e **diz isso na saída**; onde houver ktlint/detekt e o compilador, **são eles que mandam**.
