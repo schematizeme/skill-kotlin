@@ -1,0 +1,12 @@
+slug = "kotlin"
+name = "schematize-kotlin"
+tag = "Linguagem · Kotlin"
+status = "beta"
+order = 29
+current_version = "0.1.0"
+href = "/kotlin"
+
+[descriptions]
+pt = "O piso de Kotlin da casa (Android/KMP): `!!` é um NPE que você escolheu, corrotinas estruturadas sem GlobalScope, cancelamento que não se engole, sealed com when exaustivo, ciclo de vida e Context sem vazar, segredo fora do APK, Gradle com lock e wrapper verificado."
+en = "The house's Kotlin floor (Android/KMP): `!!` is an NPE you chose, structured coroutines without GlobalScope, cancellation that is never swallowed, sealed types with exhaustive when, lifecycle and Context without leaks, no secrets in the APK, Gradle with locking and a verified wrapper."
+es = "El piso de Kotlin de la casa (Android/KMP): `!!` es un NPE que elegiste, corrutinas estructuradas sin GlobalScope, cancelación que no se traga, sealed con when exhaustivo, ciclo de vida y Context sin fugas, sin secretos en el APK, Gradle con lock y wrapper verificado."
