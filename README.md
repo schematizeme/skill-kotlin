@@ -18,7 +18,7 @@ bash /tmp/skill-kotlin/install.sh .
 
 ## O que tem dentro
 
-- **SKILL.md** — o contrato: 10 pisos inegociáveis + mapa de references.
+- **SKILL.md** — o contrato: 11 pisos inegociáveis + mapa de references.
 - **references/** — `piso` (nulabilidade, corrotinas, sealed, Android, segurança, teste),
   `plataforma` (Gradle/lock/wrapper, SDK, R8, KMP, interop), `stack-versoes` (anexo volátil, datado).
 - **scripts/** — `check-kotlin.sh` (gate textual, honesto sobre o alcance, cobre também o

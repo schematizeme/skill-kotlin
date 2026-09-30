@@ -17,5 +17,8 @@
    `android:exported` **explícito**.
 10. **Build:** version catalog + lock, **wrapper com checksum**, `allWarningsAsErrors`, toolchain
     declarada, R8 com `keep` **testado**.
+11. **Orquestrador não desenvolve; subagent barato executa.** O agent principal só planeja, despacha e
+    revisa; ação onerosa vira micro-tasks para subagents em `sonnet` (falhou → o mesmo subagent corrige →
+    re-decompõe → só então `opus`, com motivo). Detalhe: `schematize-engineering` → `references/orquestracao.md` §9.
 
 Gate: `bash .claude/skills/schematize-kotlin/scripts/check-kotlin.sh .`
