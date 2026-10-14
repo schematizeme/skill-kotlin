@@ -1,0 +1,32 @@
+# detekt.yml (schematize-kotlin). Complementa o default; as regras abaixo materializam o piso.
+build:
+  maxIssues: 0
+potential-bugs:
+  UnsafeCallOnNullableType:      # !!
+    active: true
+  UnsafeCast:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+coroutines:
+  GlobalCoroutineUsage:          # GlobalScope
+    active: true
+  InjectDispatcher:
+    active: true
+  RedundantSuspendModifier:
+    active: true
+  SuspendFunWithFlowReturnType:
+    active: true
+exceptions:
+  SwallowedException:
+    active: true
+  TooGenericExceptionCaught:
+    active: true
+  EmptyCatchBlock:
+    active: true
+  PrintStackTrace:
+    active: true
+style:
+  ForbiddenComment:
+    active: true
+    values: ['FIXME:', 'STOPSHIP:']

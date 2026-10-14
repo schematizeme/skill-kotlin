@@ -2,7 +2,8 @@
 name: schematize-kotlin
 metadata:
   version: 0.2.2
-description: O piso de KOTLIN da casa (cliente Android e KMP). Rege nulabilidade (**`!!` é um NullPointerException que você escolheu**; platform type vindo de Java não é checado pelo compilador; `lateinit` é promessa sem garantia); corrotinas estruturadas (**`GlobalScope` sobrevive à tela que a criou** — o vazamento clássico do Android; `Dispatchers` no repositório, não no chamador; cancelamento cooperativo e **`CancellationException` não é erro**; `runCatching` engole o cancelamento); `sealed` + `when` sem `else` para o estado impossível não compilar; Android (Context estático vaza, ciclo de vida, `SharedPreferences` é XML em claro); segurança do cliente (nada de segredo no APK, `addJavascriptInterface`, `exported` explícito); Gradle com version catalog, lock e wrapper com checksum. Traz gate executável.
+description: >-
+  Piso de Kotlin da casa para cliente Android e KMP, sob a schematize-mobile. Use ao tocar *.kt, build.gradle.kts ou libs.versions.toml: nulabilidade sem '!!', corrotinas estruturadas (nunca GlobalScope), segredo fora do APK, Gradle com wrapper verificado, targetSdk da Play. IAM, ops e lojas ficam com a schematize-mobile. Traz CI.
 ---
 <!-- cross-skill: linguagens.md -> schematize-engineering -->
 
@@ -13,6 +14,36 @@ agnóstica é a **`schematize-engineering`**; o piso de **app** é da **`schemat
 que é de app, **ela manda**.
 
 **Versão:** skill `schematize-kotlin` v0.2.2. Changelog em `CHANGELOG.md`.
+
+## Precedência e herança (leia antes de divergir)
+
+Esta skill é o recorte **Kotlin** das linguagens **sancionadas fora do rol de backend** (`schematize-engineering` → `references/linguagens.md` §2.2): cliente **Android/KMP**, **sob a `schematize-mobile`**.
+
+1. **Onde esta skill divergir da base, a BASE MANDA.** Aqui mora a especialização — a lib, o gate, a
+   sintaxe da linguagem. Divergência de *piso* é defeito desta skill, não variante local.
+2. **O que não está repetido aqui é HERDADO, não dispensado.** Valem integralmente, sem cópia local:
+   - **§28 Archive** — `<projeto>/<projeto>_archive/` é **repositório git próprio, PRIVADO e
+     obrigatório**, criticidade 0 (`schematize-archive`).
+   - **§35 Definition of Done** e a lista de anti-padrões (citada por **título**, nunca por número).
+   - **§39 Índice/MAPA** — enumeração exaustiva (uma entrada por unidade chamável, `M == N`) e grafo
+     com arestas em ASCII (`A -> B`), nunca a seta unicode.
+   - **IAM** (`schematize-engineering` → `references/iam.md`): identidade ≠ email, ≥2 fatores, ReBAC
+     multi-tenant, argon2id-only para senha nova, sessão longa e logout irreversível.
+   - **Efeito externo** nunca sai de não-produção (`schematize-engineering` →
+     `references/efeitos-externos.md`).
+   - **Orquestração** (`schematize-engineering` → `references/orquestracao.md` §9): o principal não
+     desenvolve; subagents `sonnet` por padrão, `opus` só após falha.
+3. **Delegado à `schematize-mobile`, por nome:** IAM mobile (public client OIDC/PKCE, passkeys,
+   Keychain/Keystore), ops, offline/sync, push, testes no device e entrega nas lojas
+   (`schematize-mobile` → `references/testes-mobile.md`, `schematize-mobile` →
+   `references/entrega-lojas.md`; comandos `/mobile-auth`, `/mobile-offline`, `/mobile-test`,
+   `/mobile-release`). **Dependência:** instale a `schematize-mobile` junto; sem ela esses
+   arquivos não existem no seu ambiente e o piso de app fica sem dono.
+4. **QA, ops, IAM e índice não têm comando próprio aqui:** vêm da base `/eng-*`. Para trabalho
+   contínuo use `/eng-overdev`; para planejar `/eng-plan`; para varrer a base `/eng-scan`; para
+   revisão geral `/eng-review` (e `/eng-ops`, `/eng-iam`, `/eng-index`). Os comandos
+   `/kotlin-*` cobrem só o piso da linguagem.
+
 
 ## Por que ela nasceu
 
@@ -46,6 +77,8 @@ Mapa de references:
 | Nulabilidade e a fronteira com Java, corrotinas (escopo, dispatcher, cancelamento, Flow, propagação de exceção), `sealed`/`when`, erro como valor, Android (ciclo de vida, Context, prefs), segurança do cliente, teste | `references/piso.md` |
 | Gradle com version catalog e lock, wrapper com checksum, `minSdk`/`targetSdk`, R8 com `keep` testado, `exported`, KMP como decisão de arquitetura, interop Java | `references/plataforma.md` |
 | Versões e ferramental, com data **e a ressalva de que a toolchain não roda na máquina de referência** | `references/stack-versoes.md` |
+
+Assets prontos para copiar: `assets/ci/github-actions-ci.yml` (ktlint, detekt, `./gradlew check`) · `assets/lint/detekt.yml`.
 
 ## Pisos inegociáveis (vetam o atalho)
 
