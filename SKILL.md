@@ -3,7 +3,9 @@ name: schematize-kotlin
 metadata:
   version: 0.2.2
 description: >-
-  Piso de Kotlin da casa para cliente Android e KMP, sob a schematize-mobile. Use ao tocar *.kt, build.gradle.kts ou libs.versions.toml: nulabilidade sem '!!', corrotinas estruturadas (nunca GlobalScope), segredo fora do APK, Gradle com wrapper verificado, targetSdk da Play. IAM, ops e lojas ficam com a schematize-mobile. Traz CI.
+  Piso de Kotlin para cliente Android e KMP, sob a schematize-mobile. Use ao tocar *.kt, build.gradle.kts ou
+  libs.versions.toml: nulabilidade sem '!!', corrotinas estruturadas, segredo fora do APK, Gradle com wrapper
+  verificado. IAM, ops e lojas: schematize-mobile. Traz CI.
 ---
 <!-- cross-skill: linguagens.md -> schematize-engineering -->
 
