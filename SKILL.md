@@ -3,9 +3,7 @@ name: schematize-kotlin
 metadata:
   version: 0.3.1
 description: >-
-  Piso de Kotlin para Android e KMP, sob a schematize-mobile. Use ao tocar *.kt, build.gradle.kts ou
-  libs.versions.toml: sem '!!', corrotinas estruturadas, segredo fora do APK, Gradle com wrapper verificado. IAM e
-  lojas: mobile. Traz CI.
+  Piso de Kotlin para Android e KMP. Use ao tocar *.kt, build.gradle.kts ou libs.versions.toml: sem '!!', corrotinas estruturadas, segredo fora do APK. IAM e lojas: mobile.
 ---
 <!-- cross-skill: linguagens.md -> schematize-engineering -->
 
