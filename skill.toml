@@ -3,7 +3,7 @@ name = "schematize-kotlin"
 tag = "Linguagem · Kotlin"
 status = "beta"
 order = 29
-current_version = "0.3.0"
+current_version = "0.3.1"
 href = "/kotlin"
 
 [descriptions]
